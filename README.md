@@ -6,7 +6,7 @@ O projecto foi desenvolvido usando python django, ou seja, a aplicação locatio
 
 Para mais informações sobre o django eis o link https://docs.djangoproject.com/en/4.1/
 
-Para fazer requests a api online é só substituir o http://127.0.0.1:8000/ por https://mz-regional-api.onrender.com
+Para fazer requests a api online é só substituir o http://127.0.0.1:8000/ por https://moz-regional-prod-production.up.railway.app/
 
 Todos os requests desta API são GET.
 
