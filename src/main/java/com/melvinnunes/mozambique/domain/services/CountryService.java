@@ -4,6 +4,7 @@ import com.melvinnunes.mozambique.domain.repositories.CountryDataRepo;
 import com.melvinnunes.mozambique.infrastructure.enums.CountryDataTypes;
 import com.melvinnunes.mozambique.infrastructure.exceptions.ContentNotFound;
 import com.melvinnunes.mozambique.response.*;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,11 +17,14 @@ public class CountryService {
         this.countryDataRepo = countryDataRepo;
     }
 
+
+    @Cacheable(value = "provinces")
     public List<ProvinceDTO> listProvinces() {
         var provinces = countryDataRepo.findAllByTypeOrderByCodeAsUnsignedDesc(CountryDataTypes.CM_PROVINCE.name());
         return provinces.stream().map(province -> ProvinceDTO.build(province, null)).toList();
     }
 
+    @Cacheable(value = "provinceDetails", key = "#provinceCode")
     public ProvinceDTO getProvinceDetails(String provinceCode) {
         var province = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_PROVINCE.name(), provinceCode);
         if (province.isEmpty()) {
