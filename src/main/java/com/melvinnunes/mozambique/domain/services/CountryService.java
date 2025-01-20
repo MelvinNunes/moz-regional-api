@@ -67,11 +67,13 @@ public class CountryService {
                 .stream().map(DefaultItemDTO::build).toList();
     }
 
+    @Cacheable(value = "neighborhoods", key = "#localityCode")
     public List<DefaultItemDTO> listNeighborhoods(String localityCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_NEIGHBORHOOD.name(), localityCode)
                 .stream().map(DefaultItemDTO::build).toList();
     }
 
+    @Cacheable(value = "villages", key = "#neighborhoodCode")
     public List<DefaultItemDTO> listVillages(String neighborhoodCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_VILLAGE.name(), neighborhoodCode)
                 .stream().map(DefaultItemDTO::build).toList();
