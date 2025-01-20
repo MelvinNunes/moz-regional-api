@@ -1,3 +1,10 @@
 spring:
   application:
     name: mozambique
+  datasource:
+      url: jdbc:h2:mem:moz_db
+      driverClassName: org.h2.Driver
+      username: mozambique
+      password: password
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
