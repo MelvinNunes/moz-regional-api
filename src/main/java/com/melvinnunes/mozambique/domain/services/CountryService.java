@@ -19,4 +19,6 @@ public class CountryService {
         var provinces = countryDataRepo.findAllByTypeOrderByCodeAsUnsignedDesc(CountryDataTypes.CM_PROVINCE.name());
         return provinces.stream().map(ProvinceDTO::build).toList();
     }
+
+
 }
