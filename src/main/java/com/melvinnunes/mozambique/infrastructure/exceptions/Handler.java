@@ -4,6 +4,8 @@ import com.melvinnunes.mozambique.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -12,8 +14,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class Handler {
 
     @ExceptionHandler(ContentNotFound.class)
-    public ApiResponse<Void> handleBodyIsMissingException(HttpServletRequest request, ContentNotFound ex) {
-        return new ApiResponse<>(ex.getMessage(),  null);
+    public ResponseEntity<ApiResponse<Void>> handleBodyIsMissingException(HttpServletRequest request, ContentNotFound ex) {
+        ApiResponse<Void> response = new ApiResponse<>(ex.getMessage(),  null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
 }

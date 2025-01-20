@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface CountryDataRepo extends JpaRepository<CountryData, Long> {
     Optional<CountryData> findByTypeAndCode(String type, String code);
-    @Query(value = "SELECT * FROM country_data WHERE type = :type ORDER BY CAST(code AS UNSIGNED) DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM country_data WHERE type = :type ORDER BY CAST(code AS INTEGER)  DESC", nativeQuery = true)
     List<CountryData> findAllByTypeOrderByCodeAsUnsignedDesc(@Param("type") String type);
     List<CountryData> findAllByTypeAndParentOrderByDescriptionAsc(String type, String parent);
     List<CountryData> findAllByTypeInAndParentOrderByDescriptionAsc(String[] types, String parent);

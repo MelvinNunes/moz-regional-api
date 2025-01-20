@@ -1,6 +1,7 @@
 package com.melvinnunes.mozambique.response;
 
 import com.melvinnunes.mozambique.domain.entities.CountryData;
+import com.melvinnunes.mozambique.infrastructure.util.StringFormatter;
 
 public record DefaultItemDTO(
         String code,
@@ -9,7 +10,7 @@ public record DefaultItemDTO(
     public static DefaultItemDTO build(CountryData data) {
         return new DefaultItemDTO(
                 data.getCode(),
-                data.getDescription()
+                StringFormatter.capitalizeFirstLetters(data.getDescription())
         );
     }
 }

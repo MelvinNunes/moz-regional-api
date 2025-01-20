@@ -2,6 +2,7 @@ package com.melvinnunes.mozambique.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.melvinnunes.mozambique.domain.entities.CountryData;
+import com.melvinnunes.mozambique.infrastructure.util.StringFormatter;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public record ProvinceDTO(
     public static ProvinceDTO build(CountryData data, List<DistrictOrMunicipalityDTO> districtsAndMunicipalities) {
         return new ProvinceDTO(
                 data.getCode(),
-                data.getDescription(),
+                StringFormatter.capitalizeFirstLetters(data.getDescription()),
                 districtsAndMunicipalities
         );
     }
