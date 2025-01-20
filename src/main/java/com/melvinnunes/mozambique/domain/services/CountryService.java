@@ -3,10 +3,7 @@ package com.melvinnunes.mozambique.domain.services;
 import com.melvinnunes.mozambique.domain.repositories.CountryDataRepo;
 import com.melvinnunes.mozambique.infrastructure.enums.CountryDataTypes;
 import com.melvinnunes.mozambique.infrastructure.exceptions.ContentNotFound;
-import com.melvinnunes.mozambique.response.AdministrativePostDTO;
-import com.melvinnunes.mozambique.response.DistrictDTO;
-import com.melvinnunes.mozambique.response.DistrictOrMunicipalityDTO;
-import com.melvinnunes.mozambique.response.ProvinceDTO;
+import com.melvinnunes.mozambique.response.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -44,23 +41,32 @@ public class CountryService {
             throw new ContentNotFound("The district with code " + districtCode + " does not exist.");
         }
         var adminPosts = countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_ADMINPOST.name(), districtCode)
-                .stream().map(AdministrativePostDTO::build).toList();
+                .stream().map(DefaultItemDTO::build).toList();
         return DistrictDTO.build(district.get(), adminPosts);
     }
 
-    public void listLocalitiesByParentCode(String parentCode) {
-
+    public List<DefaultItemDTO> listLocalitiesByParentCode(String administrativePostOrTownshipCode) {
+        return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_LOCALITY.name(), administrativePostOrTownshipCode)
+                .stream().map(DefaultItemDTO::build).toList();
     }
 
-    public void listNeighborhoods(String localityCode) {
-
+    public List<DefaultItemDTO> listNeighborhoods(String localityCode) {
+        return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_NEIGHBORHOOD.name(), localityCode)
+                .stream().map(DefaultItemDTO::build).toList();
     }
 
-    public void listVillages(String neighborhoodCode) {
-
+    public List<DefaultItemDTO> listVillages(String neighborhoodCode) {
+        return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_VILLAGE.name(), neighborhoodCode)
+                .stream().map(DefaultItemDTO::build).toList();
     }
 
-    public void listMunicipalityTownships(String municipalityCode) {
-
+    public MunicipalityDTO getMunicipalityDetails(String municipalityCode) {
+        var municipality = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_MUNICIPALITY.name(), municipalityCode);
+        if (municipality.isEmpty()) {
+            throw new ContentNotFound("The municipality with code " + municipalityCode + " does not exist.");
+        }
+        var townships = countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_TOWNSHIP.name(), municipalityCode)
+                .stream().map(DefaultItemDTO::build).toList();
+        return MunicipalityDTO.build(municipality.get(), townships);
     }
 }

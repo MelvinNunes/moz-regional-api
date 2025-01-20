@@ -4,16 +4,16 @@ import com.melvinnunes.mozambique.domain.entities.CountryData;
 
 import java.util.List;
 
-public record DistrictDTO(
+public record MunicipalityDTO(
         String code,
         String designation,
-        List<DefaultItemDTO> defaultItemDTOS
+        List<DefaultItemDTO> townships
 ) {
-    public static DistrictDTO build(CountryData data, List<DefaultItemDTO> defaultItemDTOS) {
-        return new DistrictDTO(
+    public static MunicipalityDTO build(CountryData data, List<DefaultItemDTO> townships) {
+        return new MunicipalityDTO(
                 data.getCode(),
                 data.getDescription(),
-                defaultItemDTOS
+                townships
         );
     }
 }
