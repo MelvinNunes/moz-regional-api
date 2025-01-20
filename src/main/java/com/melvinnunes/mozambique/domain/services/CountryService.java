@@ -21,7 +21,7 @@ public class CountryService {
         return provinces.stream().map(province -> ProvinceDTO.build(province, null)).toList();
     }
 
-    public ProvinceDTO getProvinceWithDistricts(String provinceCode) {
+    public ProvinceDTO getProvinceDetails(String provinceCode) {
         var province = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_PROVINCE.name(), provinceCode);
         if (province.isEmpty()) {
             throw new ContentNotFound("The province with code " + provinceCode + " does not exist.");
