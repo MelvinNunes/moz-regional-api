@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 @Entity
 public class CountryData {
     @Id
-    private Integer id;
+    private Long id;
     private String oldIdentification;
     private String code;
     private String description;
@@ -18,7 +18,7 @@ public class CountryData {
 
     public CountryData() {}
 
-    public CountryData(Integer id, String oldIdentification, String code, String description, String parent, String type) {
+    public CountryData(Long id, String oldIdentification, String code, String description, String parent, String type) {
         this.id = id;
         this.oldIdentification = oldIdentification;
         this.code = code;
@@ -27,11 +27,11 @@ public class CountryData {
         this.type = type;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
