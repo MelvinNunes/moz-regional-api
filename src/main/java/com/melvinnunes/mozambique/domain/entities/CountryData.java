@@ -1,14 +1,13 @@
 package com.melvinnunes.mozambique.domain.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Table(name = "country_data")
 @Entity
 public class CountryData {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String oldIdentification;
     private String code;
