@@ -61,6 +61,7 @@ public class CountryService {
         return MunicipalityDTO.build(municipality.get(), townships);
     }
 
+    @Cacheable(value = "localities", key = "#administrativePostOrTownshipCode")
     public List<DefaultItemDTO> listLocalitiesByParentCode(String administrativePostOrTownshipCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_LOCALITY.name(), administrativePostOrTownshipCode)
                 .stream().map(DefaultItemDTO::build).toList();

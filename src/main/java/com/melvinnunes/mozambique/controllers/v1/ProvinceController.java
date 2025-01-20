@@ -33,7 +33,6 @@ public class ProvinceController {
         ));
     }
 
-
     @Operation(description = "Details of province using")
     @GetMapping("/{provinceCode}")
     public ResponseEntity<ApiResponse<ProvinceDTO>> details(@PathVariable(name = "provinceCode") String provinceCode) {

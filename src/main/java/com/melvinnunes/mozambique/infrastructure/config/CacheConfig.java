@@ -13,7 +13,7 @@ public class CacheConfig {
     @Bean
     public CacheManager cacheManager() {
         return new ConcurrentMapCacheManager("provinces", "provinceDetails", "districtDetails",
-                "municipalityDetails"
+                "municipalityDetails", "localities"
         ); // No need to use cache, but why not
     }
 
