@@ -39,6 +39,7 @@ public class CountryService {
         return ProvinceDTO.build(actualProvince, districtsAndMunicipalities);
     }
 
+    @Cacheable(value = "districtDetails", key = "#districtCode")
     public DistrictDTO getDistrictDetails(String districtCode) {
         var district = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_DISTRICT.name(), districtCode);
         if (district.isEmpty()) {
