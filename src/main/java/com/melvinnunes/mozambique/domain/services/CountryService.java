@@ -50,6 +50,17 @@ public class CountryService {
         return DistrictDTO.build(district.get(), adminPosts);
     }
 
+    @Cacheable(value = "municipalityDetails", key = "#municipalityCode")
+    public MunicipalityDTO getMunicipalityDetails(String municipalityCode) {
+        var municipality = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_MUNICIPALITY.name(), municipalityCode);
+        if (municipality.isEmpty()) {
+            throw new ContentNotFound("The municipality with code " + municipalityCode + " does not exist.");
+        }
+        var townships = countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_TOWNSHIP.name(), municipalityCode)
+                .stream().map(DefaultItemDTO::build).toList();
+        return MunicipalityDTO.build(municipality.get(), townships);
+    }
+
     public List<DefaultItemDTO> listLocalitiesByParentCode(String administrativePostOrTownshipCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_LOCALITY.name(), administrativePostOrTownshipCode)
                 .stream().map(DefaultItemDTO::build).toList();
@@ -65,13 +76,5 @@ public class CountryService {
                 .stream().map(DefaultItemDTO::build).toList();
     }
 
-    public MunicipalityDTO getMunicipalityDetails(String municipalityCode) {
-        var municipality = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_MUNICIPALITY.name(), municipalityCode);
-        if (municipality.isEmpty()) {
-            throw new ContentNotFound("The municipality with code " + municipalityCode + " does not exist.");
-        }
-        var townships = countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_TOWNSHIP.name(), municipalityCode)
-                .stream().map(DefaultItemDTO::build).toList();
-        return MunicipalityDTO.build(municipality.get(), townships);
-    }
+
 }
