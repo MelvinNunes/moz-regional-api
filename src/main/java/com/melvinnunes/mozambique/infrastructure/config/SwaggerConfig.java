@@ -10,7 +10,10 @@ import org.springframework.context.annotation.Configuration;
 public class SwaggerConfig {
     @Bean
     public OpenAPI apiInfo() {
-        return new OpenAPI().info(new Info().title("Mozambique Regional Info API Documentation").version("1.0.0"));
+        return new OpenAPI().info(new Info()
+                .title("Mozambique Regional Info API Documentation")
+                .description("API Documentation for Mozambique Regional Information")
+                .version("1.0.0"));
     }
 
     @Bean

@@ -11,4 +11,9 @@ spring:
 
 springdoc:
   api-docs:
-    path: /docs
+    path: /v1/docs
+  swagger-ui:
+    path: /docs.html
+    groups-order: DESC
+    operationsSorter: method
+    disable-swagger-default-url: true
