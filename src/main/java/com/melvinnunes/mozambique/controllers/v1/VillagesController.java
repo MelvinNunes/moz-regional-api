@@ -4,6 +4,7 @@ import com.melvinnunes.mozambique.domain.services.CountryService;
 import com.melvinnunes.mozambique.response.ApiResponse;
 import com.melvinnunes.mozambique.response.DefaultItemDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,10 @@ public class VillagesController {
     @Operation(description = "List of villages of neighborhood")
     @GetMapping
     public ResponseEntity<ApiResponse<List<DefaultItemDTO>>> list(
+            @Parameter(
+                    description = "The unique code of the neighborhood. You can get in GET /v1/neighborhoods?localityCode={code} API",
+                    required = true
+            )
             @RequestParam(name = "neighborhoodCode") String code
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(

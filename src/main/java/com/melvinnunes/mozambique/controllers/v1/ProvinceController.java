@@ -4,6 +4,7 @@ import com.melvinnunes.mozambique.domain.services.CountryService;
 import com.melvinnunes.mozambique.response.ApiResponse;
 import com.melvinnunes.mozambique.response.ProvinceDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,7 +36,14 @@ public class ProvinceController {
 
     @Operation(description = "Details of province using")
     @GetMapping("/{provinceCode}")
-    public ResponseEntity<ApiResponse<ProvinceDTO>> details(@PathVariable(name = "provinceCode") String provinceCode) {
+    public ResponseEntity<ApiResponse<ProvinceDTO>> details(
+            @Parameter(
+                    description = "The unique code of the province (e.g., '11' for Cidade de Maputo). You can get in GET /v1/provinces",
+                    example = "11",
+                    required = true
+            )
+            @PathVariable(name = "provinceCode") String provinceCode
+    ) {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(
                 "Details of the province",
                 countryService.getProvinceDetails(provinceCode)

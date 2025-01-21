@@ -8,13 +8,13 @@ import java.util.List;
 public record DistrictDTO(
         String code,
         String designation,
-        List<DefaultItemDTO> defaultItemDTOS
+        List<DefaultItemDTO> administrativePosts
 ) {
-    public static DistrictDTO build(CountryData data, List<DefaultItemDTO> defaultItemDTOS) {
+    public static DistrictDTO build(CountryData data, List<DefaultItemDTO> administrativePosts) {
         return new DistrictDTO(
                 data.getCode(),
                 StringFormatter.capitalizeFirstLetters(data.getDescription()),
-                defaultItemDTOS
+                administrativePosts
         );
     }
 }

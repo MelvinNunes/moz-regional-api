@@ -5,6 +5,7 @@ import com.melvinnunes.mozambique.response.ApiResponse;
 import com.melvinnunes.mozambique.response.DefaultItemDTO;
 import com.melvinnunes.mozambique.response.ProvinceDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,10 @@ public class LocalityController {
     @Operation(description = "List of localities of given admin post or township")
     @GetMapping
     public ResponseEntity<ApiResponse<List<DefaultItemDTO>>> list(
+            @Parameter(
+                    description = "The unique code of the admin post or township. For admin post GET /v1/districts/{districtCode} and for township get in GET /v1/municipalities/{municipalityCode} API",
+                    required = true
+            )
             @RequestParam(name = "administrativePostOrTownshipCode") String code
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(

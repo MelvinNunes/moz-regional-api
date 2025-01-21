@@ -5,6 +5,7 @@ import com.melvinnunes.mozambique.response.ApiResponse;
 import com.melvinnunes.mozambique.response.MunicipalityDTO;
 import com.melvinnunes.mozambique.response.ProvinceDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,13 @@ public class MunicipalityController {
 
     @Operation(description = "Get municipality details")
     @GetMapping("/{municipalityCode}")
-    public ResponseEntity<ApiResponse<MunicipalityDTO>> details(@PathVariable(name = "municipalityCode") String municipalityCode) {
+    public ResponseEntity<ApiResponse<MunicipalityDTO>> details(
+            @Parameter(
+                    description = "The unique code of the municipality. You can get in GET /v1/provinces/{provinceCode} API",
+                    required = true
+            )
+            @PathVariable(name = "municipalityCode") String municipalityCode
+    ) {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(
                 "Details of Municipality",
                 countryService.getMunicipalityDetails(municipalityCode)
