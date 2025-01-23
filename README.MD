@@ -27,6 +27,26 @@ This API uses a DDD (Domain Driven Design), because why not hehe.
 - Java 17 (Because we're not living in the stone age)
 - Maven (Your build bestie)
 
+# 🇲🇿 Mozambique Provinces API 🌍
+
+## Classification Types 🏷️
+
+The API uses a comprehensive enum `CountryDataTypes` to categorize administrative regions:
+
+- `CM_PROVINCE`: Provincial level
+- `CM_DISTRICT`: District level
+- `CM_COUNTRY`: Entire country
+- `CM_LOCALITY`: Local areas
+- `CM_ADMINPOST`: Administrative posts
+- `CM_NEIGHBORHOOD`: Neighborhood level
+- `CM_VILLAGE`: Village level
+- `CM_TOWNSHIP`: Township areas
+- `CM_MUNICIPALITY`: Municipal level
+
+## 🌟 Special Note: "Não Aplicavél"
+
+Some data entries contain "Não Aplicavél" (Not Applicable) - a classification used by the Autoridade Tributária (Tax Authority). This indicates administrative regions or entries where a specific classification doesn't perfectly apply.
+
 ### Getting Started
 ```bash
 # Clone the repo
