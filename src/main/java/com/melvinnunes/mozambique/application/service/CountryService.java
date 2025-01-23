@@ -18,13 +18,11 @@ public class CountryService {
     }
 
 
-    @Cacheable(value = "provinces")
     public List<ProvinceDTO> listProvinces() {
         var provinces = countryDataRepo.findAllByTypeOrderByCodeAsUnsignedDesc(CountryDataTypes.CM_PROVINCE.name());
         return provinces.stream().map(province -> ProvinceDTO.build(province, null)).toList();
     }
 
-    @Cacheable(value = "provinceDetails", key = "#provinceCode")
     public ProvinceDTO getProvinceDetails(String provinceCode) {
         var province = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_PROVINCE.name(), provinceCode);
         if (province.isEmpty()) {
@@ -39,7 +37,6 @@ public class CountryService {
         return ProvinceDTO.build(actualProvince, districtsAndMunicipalities);
     }
 
-    @Cacheable(value = "districtDetails", key = "#districtCode")
     public DistrictDTO getDistrictDetails(String districtCode) {
         var district = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_DISTRICT.name(), districtCode);
         if (district.isEmpty()) {
@@ -50,7 +47,6 @@ public class CountryService {
         return DistrictDTO.build(district.get(), adminPosts);
     }
 
-    @Cacheable(value = "municipalityDetails", key = "#municipalityCode")
     public MunicipalityDTO getMunicipalityDetails(String municipalityCode) {
         var municipality = countryDataRepo.findByTypeAndCode(CountryDataTypes.CM_MUNICIPALITY.name(), municipalityCode);
         if (municipality.isEmpty()) {
@@ -61,23 +57,18 @@ public class CountryService {
         return MunicipalityDTO.build(municipality.get(), townships);
     }
 
-    @Cacheable(value = "localities", key = "#administrativePostOrTownshipCode")
     public List<DefaultItemDTO> listLocalitiesByParentCode(String administrativePostOrTownshipCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_LOCALITY.name(), administrativePostOrTownshipCode)
                 .stream().map(DefaultItemDTO::build).toList();
     }
 
-    @Cacheable(value = "neighborhoods", key = "#localityCode")
     public List<DefaultItemDTO> listNeighborhoods(String localityCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_NEIGHBORHOOD.name(), localityCode)
                 .stream().map(DefaultItemDTO::build).toList();
     }
 
-    @Cacheable(value = "villages", key = "#neighborhoodCode")
     public List<DefaultItemDTO> listVillages(String neighborhoodCode) {
         return countryDataRepo.findAllByTypeAndParentOrderByDescriptionAsc(CountryDataTypes.CM_VILLAGE.name(), neighborhoodCode)
                 .stream().map(DefaultItemDTO::build).toList();
     }
-
-
 }
