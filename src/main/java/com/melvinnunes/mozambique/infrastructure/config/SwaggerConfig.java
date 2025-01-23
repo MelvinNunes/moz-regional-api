@@ -19,7 +19,7 @@ public class SwaggerConfig {
     @Bean
     public GroupedOpenApi httpApi() {
         return GroupedOpenApi.builder()
-                .group("http")
+                .group("https")
                 .pathsToMatch("/**")
                 .build();
     }
