@@ -1,9 +1,9 @@
-package com.melvinnunes.mozambique.controllers.v1;
+package com.melvinnunes.mozambique.interfaces.controllers;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.melvinnunes.mozambique.response.ApiResponse;
-import com.melvinnunes.mozambique.response.ProvinceDTO;
+import com.melvinnunes.mozambique.interfaces.response.ApiResponse;
+import com.melvinnunes.mozambique.interfaces.dto.ProvinceDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

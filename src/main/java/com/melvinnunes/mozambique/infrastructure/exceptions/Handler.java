@@ -1,6 +1,6 @@
 package com.melvinnunes.mozambique.infrastructure.exceptions;
 
-import com.melvinnunes.mozambique.response.ApiResponse;
+import com.melvinnunes.mozambique.interfaces.response.ApiResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

@@ -1,4 +1,4 @@
-package com.melvinnunes.mozambique.domain.entities;
+package com.melvinnunes.mozambique.domain.entity;
 
 import jakarta.persistence.*;
 

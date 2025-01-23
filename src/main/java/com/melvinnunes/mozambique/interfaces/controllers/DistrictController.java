@@ -1,8 +1,8 @@
-package com.melvinnunes.mozambique.controllers.v1;
+package com.melvinnunes.mozambique.interfaces.controllers;
 
-import com.melvinnunes.mozambique.domain.services.CountryService;
-import com.melvinnunes.mozambique.response.ApiResponse;
-import com.melvinnunes.mozambique.response.DistrictDTO;
+import com.melvinnunes.mozambique.application.service.CountryService;
+import com.melvinnunes.mozambique.interfaces.response.ApiResponse;
+import com.melvinnunes.mozambique.interfaces.dto.DistrictDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,6 +1,6 @@
-package com.melvinnunes.mozambique.response;
+package com.melvinnunes.mozambique.interfaces.dto;
 
-import com.melvinnunes.mozambique.domain.entities.CountryData;
+import com.melvinnunes.mozambique.domain.entity.CountryData;
 import com.melvinnunes.mozambique.infrastructure.util.StringFormatter;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.melvinnunes.mozambique.infrastructure.enums;
+package com.melvinnunes.mozambique.application.enums;
 
 public enum CountryDataTypes {
     CM_PROVINCE,

@@ -1,6 +1,6 @@
-package com.melvinnunes.mozambique.domain.repositories;
+package com.melvinnunes.mozambique.domain.repository;
 
-import com.melvinnunes.mozambique.domain.entities.CountryData;
+import com.melvinnunes.mozambique.domain.entity.CountryData;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

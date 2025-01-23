@@ -1,8 +1,8 @@
-package com.melvinnunes.mozambique.controllers.v1;
+package com.melvinnunes.mozambique.interfaces.controllers;
 
-import com.melvinnunes.mozambique.domain.services.CountryService;
-import com.melvinnunes.mozambique.response.ApiResponse;
-import com.melvinnunes.mozambique.response.DefaultItemDTO;
+import com.melvinnunes.mozambique.application.service.CountryService;
+import com.melvinnunes.mozambique.interfaces.response.ApiResponse;
+import com.melvinnunes.mozambique.interfaces.dto.DefaultItemDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,28 +15,28 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Tag(name = "Villages", description = "Villages collections")
+@Tag(name = "Neighborhoods", description = "Neighborhoods collections")
 @RestController
-@RequestMapping("/v1/villages")
-public class VillagesController {
+@RequestMapping("/v1/neighborhoods")
+public class NeighborhoodController {
     private final CountryService countryService;
 
-    public VillagesController(CountryService countryService) {
+    public NeighborhoodController(CountryService countryService) {
         this.countryService = countryService;
     }
 
-    @Operation(description = "List of villages of neighborhood")
+    @Operation(description = "List of neighborhoods of locality")
     @GetMapping
     public ResponseEntity<ApiResponse<List<DefaultItemDTO>>> list(
             @Parameter(
-                    description = "The unique code of the neighborhood. You can get in GET /v1/neighborhoods?localityCode={code} API",
+                    description = "The unique code of the locality. You can get in GET /v1/localities?administrativePostOrTownshipCode={code} API",
                     required = true
             )
-            @RequestParam(name = "neighborhoodCode") String code
+            @RequestParam(name = "localityCode") String code
     ) {
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(
-                "List of villages",
-                countryService.listVillages(code)
+                "List of neighborhoods",
+                countryService.listNeighborhoods(code)
         ));
     }
 }

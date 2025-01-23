@@ -1,9 +1,9 @@
-package com.melvinnunes.mozambique.domain.services;
+package com.melvinnunes.mozambique.application.service;
 
-import com.melvinnunes.mozambique.domain.repositories.CountryDataRepo;
-import com.melvinnunes.mozambique.infrastructure.enums.CountryDataTypes;
+import com.melvinnunes.mozambique.domain.repository.CountryDataRepo;
+import com.melvinnunes.mozambique.application.enums.CountryDataTypes;
 import com.melvinnunes.mozambique.infrastructure.exceptions.ContentNotFound;
-import com.melvinnunes.mozambique.response.*;
+import com.melvinnunes.mozambique.interfaces.dto.*;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
