@@ -8,9 +8,6 @@ WORKDIR /app
 COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
-# Download the dependencies
-RUN ./mvnw dependency:go-offline
-
 # Copy the application files
 COPY src ./src
 

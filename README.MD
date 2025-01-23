@@ -66,6 +66,6 @@ Got ideas? Pull requests are welcome! Just try not to break Mozambique in the pr
 
 ## 📄 License
 
-Probably MIT or Apache 2.0 - Check the LICENSE file (you did remember to add one, right? 😉)
+Probably MIT or Apache 2.0 - Check the LICENSE file.
 
 **Disclaimer**: This API knows more about Mozambican geography than most geography teachers! 🌍🗺️
