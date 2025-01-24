@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class SurpriseInfoService {
@@ -30,6 +31,8 @@ public class SurpriseInfoService {
     }
 
     private List<String> validProvinceName() {
-        return List.of("cidade de maputo", "maputo");
+        return Stream.of("Cidade de Maputo", "Maputo", "Gaza", "Inhambane",
+                "Sofala", "Manica", "Tete", "Zambézia", "Nampula", "Cabo Delgado", "Niassa")
+                .map(String::toLowerCase).toList();
     }
 }
