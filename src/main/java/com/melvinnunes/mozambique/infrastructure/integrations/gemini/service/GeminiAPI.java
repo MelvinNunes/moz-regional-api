@@ -9,12 +9,13 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class GeminiAPI {
-    private static final String BASE_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
+    private static final String BASE_URL = "https://generativelanguage.googleapis.com";
+    private static final String BASE_ENDPOINT = "/v1beta/models/gemini-1.5-flash:generateContent";
     private final WebClient webClient;
     private final String apiKey;
 
-    public GeminiAPI(WebClient webClient, @Value("${gemini.api.key}") String apiKey) {
-        this.webClient = webClient;
+    public GeminiAPI(WebClient.Builder webClient, @Value("${gemini.api.key}") String apiKey) {
+        this.webClient = webClient.baseUrl(BASE_URL).build();
         this.apiKey = apiKey;
     }
 
@@ -23,8 +24,8 @@ public class GeminiAPI {
 
         return webClient.post()
                 .uri(uriBuilder -> uriBuilder
-                        .path(BASE_URL)
-                        .queryParam("key", "AIzaSyD7uyvDFexxvpBamTfcX_IMVY-QSo9AXME")
+                        .path(BASE_ENDPOINT)
+                        .queryParam("key", apiKey)
                         .build())
                 .body(Mono.just(request), GeminiRequest.class)
                 .retrieve()
