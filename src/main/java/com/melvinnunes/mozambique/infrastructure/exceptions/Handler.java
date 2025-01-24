@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class Handler {
 
     @ExceptionHandler(ContentNotFound.class)
-    public ResponseEntity<ApiResponse<Void>> handleBodyIsMissingException(HttpServletRequest request, ContentNotFound ex) {
+    public ResponseEntity<ApiResponse<Void>> handleContentNotFoundException(HttpServletRequest request, ContentNotFound ex) {
         ApiResponse<Void> response = new ApiResponse<>(ex.getMessage(),  null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<ApiResponse<Void>> handleBaddRequestException(HttpServletRequest request, BadRequestException ex) {
+        ApiResponse<Void> response = new ApiResponse<>(ex.getMessage(),  null);
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
 }

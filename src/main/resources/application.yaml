@@ -20,3 +20,7 @@ springdoc:
     groups-order: DESC
     operationsSorter: method
     disable-swagger-default-url: true
+
+gemini:
+  api:
+    key: ${GEMINI_KEY:key_here}
