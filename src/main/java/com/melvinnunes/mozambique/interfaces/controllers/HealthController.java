@@ -14,17 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1/health")
 public class HealthController {
-    private final SurpriseInfoService service;
-
-    public HealthController(SurpriseInfoService service) {
-        this.service = service;
-    }
-
     @GetMapping
     @Operation(description = "Gets the application health status")
     public ResponseEntity<ApiResponse<Void>> index() {
-        String info = service.requestSurpriseInfo("Cidade de Maputo");
-        System.out.println(info);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse<>(
                 "The API is health!",
                 null
