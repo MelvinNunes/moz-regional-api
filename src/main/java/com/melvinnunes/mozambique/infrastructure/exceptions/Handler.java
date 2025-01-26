@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 
 @RestControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -20,8 +21,14 @@ public class Handler {
     }
 
     @ExceptionHandler(BadRequestException.class)
-    public ResponseEntity<ApiResponse<Void>> handleBaddRequestException(HttpServletRequest request, BadRequestException ex) {
+    public ResponseEntity<ApiResponse<Void>> handleBadRequestException(HttpServletRequest request, BadRequestException ex) {
         ApiResponse<Void> response = new ApiResponse<>(ex.getMessage(),  null);
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleNoHandlerFoundException(HttpServletRequest request,NoHandlerFoundException ex) {
+        ApiResponse<Void> response = new ApiResponse<>("Route not found!",  null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 }

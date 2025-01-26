@@ -1,7 +1,7 @@
 services:
   api:
-    image: "melvinnunes/mozambique-api"
+    image: "melvinnunes/mozambique-api:latest"
     ports:
-      - {EXPOSING_PORT}:8080
+      - 127.0.0.1:${EXPOSING_PORT}:8080
     env_file:
       - .env

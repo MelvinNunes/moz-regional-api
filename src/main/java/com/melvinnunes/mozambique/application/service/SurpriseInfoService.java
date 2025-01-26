@@ -30,7 +30,7 @@ public class SurpriseInfoService {
 
     private String resolveGeminiResponse(String provinceName) {
         try {
-            GeminiResponse response = geminiAPI.getPromptResponse("Um informação interessante sobre cidade de maputo em moçambique").block();
+            GeminiResponse response = geminiAPI.getPromptResponse(String.format("Um informação interessante sobre %s em moçambique", provinceName)).block();
             assert response != null;
             return response.getCandidates().get(0).getContent().getParts().get(0).getText();
         } catch (Exception e) {
